@@ -6,6 +6,6 @@ type Field* = enum
     VX,
     VY,
 # color
-    R,
-    G,
-    B,
+    HUE,
+    SAT,
+    VAL,

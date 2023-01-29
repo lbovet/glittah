@@ -57,5 +57,9 @@ proc show*(particle: Particle): string =
     for field in Field.low..Field.high:
         result.add(toLower(&"{field}={particle.cur(field):.3f} "))
 
+proc afterInit*() =
+    state.pages[current()] = state.pages[next()]
+
 proc roll*() =
     state.currentPage = next()
+    state.pages[next()] = state.pages[current()]

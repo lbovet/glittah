@@ -2,9 +2,11 @@ import model, drawim, std/random
 
 proc start*(init, update: proc) =
     setFrameRate(params.frameRate)
+    setColorMode(HSV)
 
     proc setup() =
         init()
+        afterInit()
         background(0)
 
     proc draw() =
@@ -12,11 +14,8 @@ proc start*(init, update: proc) =
         roll()
         for particle in particles():
             update(particle)
-            var blink = float(rand(3))/3.0
-            var r = (blink*min(1.0,particle.get(R))) + 0.2
-            var g = (blink*min(1.0,particle.get(G))) + 0.2
-            stroke(r, g, 0.2)
-            fill(r, g, 0.2)
+            stroke(particle.get(HUE).int, particle.get(SAT), particle.get(VAL))
+            fill(particle.get(HUE).int, particle.get(SAT), particle.get(VAL))
             circleFill(particle.get(X)*params.windowWidth,
                 particle.get(Y)*params.windowWidth,
                 params.size*params.windowWidth*params.sizeFactor)

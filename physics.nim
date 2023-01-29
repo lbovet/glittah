@@ -2,15 +2,9 @@ import model
 
 var velocityFactor = params.speed / params.frameRate
 
-proc inertia*(p: Particle) =
-    p.set(X, p.get(X))
-    p.set(Y, p.get(Y))
-    p.set(VX, p.get(VX))
-    p.set(VY, p.get(VY))
-
 proc position*(p: Particle) =
-    p.add(X, p.get(VX) * velocityFactor)
-    p.add(Y, p.get(VY) * velocityFactor)
+    p.add(X, p.cur(VX) * velocityFactor)
+    p.add(Y, p.cur(VY) * velocityFactor)
 
 proc bounceWalls*(p: Particle) =
     var x = p.cur(X)

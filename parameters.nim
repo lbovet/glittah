@@ -3,6 +3,10 @@ type Params* = object
     particleCount* = 100
     speed* = 0.2
     size* = 0.01
+    flickerRatio* = 0.5
+    flickerDepth* = 0.4
+    glitterRatio* = 0.6
+    glitterDepth* = 0.95
 
     # constant
     windowWidth* = 500
