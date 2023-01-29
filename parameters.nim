@@ -4,13 +4,13 @@ type Params* = object
     speed* = 0.2
     size* = 0.01
 
+    flicker* = 0.4
     flickerRatio* = 0.5
-    flickerDepth* = 0.4
 
+    glitter* = 0.95
     glitterRatio* = 0.6
-    glitterDepth* = 0.95
 
-    weirdBounce* = 0
+    weirdBounce* = 1
 
     # constant
     windowWidth* = 500

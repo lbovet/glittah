@@ -1,5 +1,5 @@
 import std/random, std/math
-import model, geometry, physics, lights, ui
+import model, geometry, physics, lights, ui, maybe
 
 proc init() =
     for p in particles():
@@ -14,11 +14,11 @@ proc init() =
 proc update*(p: Particle) =
 
     for q in p.others():
-        if params.weirdBounce > 0: weirdBounce(distance(p, q), p, q)
+        ?weirdBounce(distance(p, q), p, q)
 
     p.position()
     p.bounceWalls()
-    if params.flickerRatio > 0: p.flicker()
-    if params.glitterRatio > 0: p.glitter()
+    ?p.flicker()
+    ?p.glitter()
 
 ui.start(init, update)
