@@ -34,6 +34,11 @@ iterator particles*(): Particle {.inline} =
     for index in 0..params.particleCount-1:
         yield index
 
+iterator others*(particle: Particle): Particle {.inline.} =
+    for index in 0..params.particleCount-1:
+        if index != particle:
+            yield index
+
 proc get*(particle: Particle, field: Field): float {.inline} =
     state.pages[current()][particle.field(field)]
 
