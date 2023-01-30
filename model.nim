@@ -39,16 +39,13 @@ iterator others*(particle: Particle): Particle {.inline.} =
         if index != particle:
             yield index
 
-proc get*(particle: Particle, field: Field): float {.inline} =
+proc `$`*(particle: Particle, field: Field): var float {.inline.} =
     state.pages[current()][particle.field(field)]
 
-proc cur*(particle: Particle, field: Field): float {.inline} =
+proc `$>`*(particle: Particle, field: Field): var float {.inline.} =
     state.pages[next()][particle.field(field)]
 
-proc set*(particle: Particle, field: Field, value: float) {.inline} =
-    state.pages[next()][particle.field(field)] = value
-
-proc add*(particle: Particle, field: Field, value: float) {.inline} =
+proc add*(particle: Particle, field: Field, value: float) {.inline.} =
     state.pages[next()][particle.field(field)] += value
 
 proc mult*(particle: Particle, field: Field, value: float) {.inline} =
@@ -57,13 +54,13 @@ proc mult*(particle: Particle, field: Field, value: float) {.inline} =
 proc show*(particle: Particle): string =
     result = &"P[{particle}]\n(current):"
     for field in Field.low..Field.high:
-        result.add(toLower(&"{field}={particle.get(field):.3f} "))
+        result.add(toLower(&"{field}={particle$field:.3f} "))
     result.add &"\n(next):"
     for field in Field.low..Field.high:
-        result.add(toLower(&"{field}={particle.cur(field):.3f} "))
+        result.add(toLower(&"{field}={particle$field:.3f} "))
 
 proc afterInit*() =
-    state.pages[current()] = state.pages[next()]
+    state.pages[next()] = state.pages[current()]
 
 proc roll*() =
     state.currentPage = next()

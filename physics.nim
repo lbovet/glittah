@@ -4,12 +4,12 @@ import model
 var velocityFactor = params.speed / params.frameRate
 
 proc position*(p: Particle) =
-    p.add(X, p.cur(VX) * velocityFactor)
-    p.add(Y, p.cur(VY) * velocityFactor)
+    p.add(X, p$>VX * velocityFactor)
+    p.add(Y, p$>VY * velocityFactor)
 
 proc bounceWalls*(p: Particle) =
-    var x = p.cur(X)
-    var y = p.cur(Y)
+    var x = p$>X
+    var y = p$>Y
     if x > params.width:
         p.mult(VX, -1)
     if x < 0:
@@ -21,5 +21,5 @@ proc bounceWalls*(p: Particle) =
 
 proc weirdBounce*(distance: float, p, q: Particle) =
     if distance < params.size:
-        p.set(VX, q.get(VX) * sgn(p.get(VX)*q.get(VX)).float)
-        p.set(VY, q.get(VY) * sgn(p.get(VX)*q.get(VX)).float)
+        p$>VX = q$VX * sgn(p$VX*q$VX).float
+        p$>VY = q$VY * sgn(p$VY*q$VY).float

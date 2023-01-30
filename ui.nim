@@ -14,11 +14,11 @@ proc start*(init, update: proc) =
         roll()
         for particle in particles():
             update(particle)
-            stroke(particle.get(HUE).int, particle.get(SAT), particle.get(VAL))
-            fill(particle.get(HUE).int, particle.get(SAT), particle.get(VAL))
-            circleFill(particle.get(X)*params.windowWidth,
-                particle.get(Y)*params.windowWidth,
-                params.size*params.windowWidth*params.sizeFactor)
+            stroke((particle$HUE).int, particle$SAT, particle$VAL)
+            fill((particle$HUE).int, particle$SAT, particle$VAL)
+            circleFill(particle$X * params.windowWidth,
+                particle$Y * params.windowWidth,
+                params.size * params.windowWidth*params.sizeFactor)
         if isMousePressed(MOUSE_BUTTON_LEFT):
             quit()
 
