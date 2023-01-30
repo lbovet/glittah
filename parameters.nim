@@ -1,8 +1,8 @@
 type Params* = object
     # updatable
-    particleCount* = 100
-    speed* = 0.2
-    size* = 0.01
+    particleCount* = 1000
+    speed* = 0.1
+    size* = 0.003
 
     flicker* = 0.4
     flickerRatio* = 0.5
@@ -13,8 +13,8 @@ type Params* = object
     weirdBounce* = 1
 
     # constant
-    windowWidth* = 500
-    windowHeight* = 500
+    windowWidth* = 1000
+    windowHeight* = 800
     frameRate* = 30
     sizeFactor* = 0.2
 

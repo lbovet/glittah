@@ -1,4 +1,4 @@
-import model, drawim, std/random
+import model, drawim
 
 proc start*(init, update: proc) =
     setFrameRate(params.frameRate)
