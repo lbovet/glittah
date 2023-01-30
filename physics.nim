@@ -30,3 +30,6 @@ proc attraction*(distance: float, p, q: Particle) =
             (distance^2 * params.frameRate)
         p$>VY += (params.attraction * params.mass * (q$Y - p$Y)) /
             (distance^2 * params.frameRate)
+
+proc gravity*(p: Particle) =
+    p$>VY += params.gravity / params.frameRate

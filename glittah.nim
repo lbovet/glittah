@@ -5,8 +5,8 @@ proc init() =
     for p in particles():
         p$X = float(rand(params.width))
         p$Y = float(rand(params.height))
-        p$VX = rand(-1.0..1.0)
-        p$VY = rand(-1.0..1.0)
+        #p$VX = rand(-1.0..1.0)
+        #p$VY = rand(-1.0..1.0)
         p$HUE = if rand(1)==1: 67 else: 0
         p$SAT = 100
         p$VAL = 1
@@ -19,6 +19,7 @@ proc update*(p: Particle) =
         ?attraction(distance(p, q), p, q)
 
     # movement
+    ?p.gravity()
     p.position()
     p.bounceWalls()
 

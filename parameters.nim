@@ -3,7 +3,7 @@ type Params* = object
     particleCount* = 100
     worldSpeed* = 0.1
 
-    size* = 0.008
+    size* = 0.01
     mass* = 0.1
 
     flicker* = 0.4
@@ -14,8 +14,10 @@ type Params* = object
 
     weirdBounce* = 1
 
-    attraction* = 0.07
-    attractionRadius* = 0.4
+    attraction* = 0.06
+    attractionRadius* = 0.2
+
+    gravity* = 0.5
 
     # constant
     windowWidth* = 600
