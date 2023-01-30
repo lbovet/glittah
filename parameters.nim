@@ -1,8 +1,10 @@
 type Params* = object
     # updatable
-    particleCount* = 1000
-    speed* = 0.1
-    size* = 0.003
+    particleCount* = 100
+    worldSpeed* = 0.1
+
+    size* = 0.008
+    mass* = 0.1
 
     flicker* = 0.4
     flickerRatio* = 0.5
@@ -12,9 +14,12 @@ type Params* = object
 
     weirdBounce* = 1
 
+    attraction* = 0.07
+    attractionRadius* = 0.4
+
     # constant
-    windowWidth* = 1000
-    windowHeight* = 800
+    windowWidth* = 600
+    windowHeight* = 600
     frameRate* = 30
     sizeFactor* = 0.2
 

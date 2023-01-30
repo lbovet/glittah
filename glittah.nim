@@ -13,11 +13,16 @@ proc init() =
 
 proc update*(p: Particle) =
 
+    # interactions
     for q in p.others():
         ?weirdBounce(distance(p, q), p, q)
+        ?attraction(distance(p, q), p, q)
 
+    # movement
     p.position()
     p.bounceWalls()
+
+    # look
     ?p.flicker()
     ?p.glitter()
 
