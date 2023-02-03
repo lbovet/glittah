@@ -1,11 +1,11 @@
 import std/math
 import model
 
-var velocityFactor = params.worldSpeed / params.frameRate
+proc velocityFactor: float = params.worldSpeed * 0.2 / params.frameRate
 
 proc position*(p: Particle) =
-    p.add(X, p$>VX * velocityFactor)
-    p.add(Y, p$>VY * velocityFactor)
+    p.add(X, p$>VX * velocityFactor())
+    p.add(Y, p$>VY * velocityFactor())
 
 proc bounceWalls*(p: Particle) =
     var x = p$>X

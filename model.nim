@@ -2,9 +2,12 @@ import std/strformat, std/unicode
 import fields, parameters
 export fields.Field
 export parameters.params
+export parameters.names
+export parameters.values
+export parameters.updaters
 
 const particleLength = ord(high(Field)) + 1
-const maxParticleCount = 100000
+const maxParticleCount* = 100000
 
 type Particle* = range[0..maxParticleCount-1]
 
@@ -31,11 +34,11 @@ proc next(): int {.inline} =
     return (state.currentPage + 1) mod (high(PageIndex) + 1)
 
 iterator particles*(): Particle {.inline} =
-    for index in 0..params.particleCount-1:
+    for index in 0..int(params.particleCount*500)-1:
         yield index
 
 iterator others*(particle: Particle): Particle {.inline.} =
-    for index in 0..params.particleCount-1:
+    for index in 0..int(params.particleCount*500)-1:
         if index != particle:
             yield index
 
