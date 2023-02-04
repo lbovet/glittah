@@ -35,14 +35,14 @@ proc update*(menu: Menu) =
         if menu.click == (-1, -1):
             menu.click = (mouseX(), mouseY())
         var vec = (x: mouseX() - menu.click.x, y: mouseY() - menu.click.y)
-        if abs(vec.y) > abs(vec.x) and abs(vec.y) > 40:
+        if abs(vec.y) > abs(vec.x) and abs(vec.y) > 40 and refVal == -1:
             menu.current += sgn(vec.y)
             if menu.current < 0:
                 menu.current = menu.items.len - 1
             if menu.current >= menu.items.len:
                 menu.current = 0
             menu.click = (mouseX(), mouseY())
-        if abs(vec.x) > abs(vec.y) and abs(vec.x) > 20:
+        if abs(vec.x) > abs(vec.y) and abs(vec.x) > 20 or refVal != -1:
             if refVal == -1.0:
                 refVal = menu.values[menu.current]
             menu.values[menu.current] = max(0, min(1.0, refVal + vec.x / params.windowWidth.int))
@@ -51,4 +51,3 @@ proc update*(menu: Menu) =
     else:
         menu.click = (-1, -1)
         refVal = -1
-    echo menu.click

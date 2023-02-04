@@ -3,7 +3,7 @@ type Params* = object
     particleCount* = 0.2 # 1.0 -> 500
     worldSpeed* = 0.5
 
-    size* = 0.01
+    size* = 0.1
     mass* = 0.1
 
     flicker* = 0.4
@@ -23,7 +23,7 @@ type Params* = object
     windowWidth* = 1000.0
     windowHeight* = 1000.0
     frameRate* = 30.0
-    sizeFactor* = 0.2
+    sizeFactor* = 0.02
 
     # calculated
     width* = 1.0

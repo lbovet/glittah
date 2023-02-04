@@ -20,7 +20,7 @@ proc bounceWalls*(p: Particle) =
         p.mult(VY, -1)
 
 proc weirdBounce*(distance: float, p, q: Particle) =
-    if distance < params.size:
+    if distance < params.size * 0.1:
         p$>VX = q$VX * sgn(p$VX*q$VX).float
         p$>VY = q$VY * sgn(p$VY*q$VY).float
 
