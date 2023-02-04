@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+
+<head>
+    <title>Glittah</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <style>
+        html, body {margin: 0; height: 100%; overflow: hidden}
+    </style>
+</head>
+
+<body>
+    <div id="glittah">
+    </div>
+    <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+    <script>
+        $(document).ready(function () {
+
+                var onTouchEvent = function (event) {
+                    var type;
+                    switch (event.type) {
+                        case "touchstart":
+                            window.dispatchEvent(new MouseEvent("mousemove", {
+                                view: window,
+                                bubbles: true,
+                                cancelable: true,
+                                clientX: event.originalEvent.touches[0].clientX,
+                                clientY: event.originalEvent.touches[0].clientY
+                            }))
+                            document.dispatchEvent(new MouseEvent("mousedown", {
+                                view: window,
+                                bubbles: true,
+                                cancelable: true,
+                                clientX: event.originalEvent.touches[0].clientX,
+                                clientY: event.originalEvent.touches[0].clientY
+                            }))
+                            break;
+                        case "touchend":
+                            document.dispatchEvent(new MouseEvent("mouseup", {
+                                view: window,
+                                bubbles: true,
+                                cancelable: true,
+                            }))
+                            break;
+                        case "touchmove":
+                            window.dispatchEvent(new MouseEvent("mousemove", {
+                                view: window,
+                                bubbles: true,
+                                cancelable: true,
+                                clientX: event.originalEvent.touches[0].clientX,
+                                clientY: event.originalEvent.touches[0].clientY
+                            }))
+                            break;
+                        default:
+                            return;
+                    }
+                    var touch = event.originalEvent.touches[0];
+
+                    const e = new MouseEvent(type, {
+                        view: window,
+                        bubbles: true,
+                        cancelable: true,
+                        button: 0,
+                        clientX: touch ? touch.clientX : 0,
+                        clientY: touch ? touch.clientY : 0
+                    });
+                    if(type == "mousemove") {
+                        window.dispatchEvent(e)
+                    } else {
+                        if(type == "mousedown") {
+
+                        }
+                        document.dispatchEvent(e)
+                    }
+                }
+
+                var elt = $("#glittah");
+                elt.on("touchstart", onTouchEvent);
+                elt.on("touchmove", onTouchEvent);
+                elt.on("touchend", onTouchEvent);
+            });
+    </script>
+    <script type="text/javascript" src="glittah.js"></script>
+</body>
