@@ -1,4 +1,4 @@
-import drawim, text, ../parameters, std/math, std/unicode, std/sequtils, sugar
+import drawim, text, ../parameters, std/math, std/unicode, sugar
 
 const visible = 3.0
 
@@ -22,7 +22,7 @@ proc update*(menu: Menu) =
     menu.display -= (1.0 / params.frameRate)
     if menu.display > 0 :
         stroke(0,0,0,0)
-        fill(13, 50, 0.5, min(menu.display, 0.7))
+        fill(2, 0.8, 0.5, min(menu.display, 0.7))
         rectFill(0.0, params.windowHeight - 80.0,
             params.windowWidth * menu.values[menu.current], 100.0)
         Label(text: displayName(menu.items[menu.current]), x: 10, y: params.windowHeight - 10.0,
@@ -38,7 +38,7 @@ proc update*(menu: Menu) =
                 menu.current = 0
             menu.click = (mouseX(), mouseY())
         if abs(vec.x) > abs(vec.y) and abs(vec.x) > int(params.windowWidth / 10):
-            menu.values[menu.current] = mouseX() / params.windowWidth.int
+            menu.values[menu.current] = max(0, min(1.0, mouseX() / params.windowWidth.int))
             menu.click = (-int(params.windowWidth), mouseY())
             menu.updaters[menu.current](menu.values[menu.current])
         menu.display = visible

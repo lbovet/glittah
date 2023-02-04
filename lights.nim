@@ -9,6 +9,6 @@ proc flicker*(p: Particle) =
 
 proc glitter*(p: Particle) =
     if rand(1.0) < params.glitterRatio:
-        p$>SAT = 50 * rand(1.0 - params.glitter)
+        p$>SAT = rand(1.0 - params.glitter)
     else:
-        p$>SAT = 100.0
+        p$>SAT = 1.0
