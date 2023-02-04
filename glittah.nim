@@ -8,7 +8,7 @@ proc init() =
         if(params.gravity == 0.0):
             p$VX = rand(-1.0..1.0)
             p$VY = rand(-1.0..1.0)
-        p$HUE = if rand(1)==1: 67 else: 0
+        p$HUE = if rand(1)==1: 151 else: 0
         p$SAT = 100
         p$VAL = 1
 

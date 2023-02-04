@@ -31,6 +31,11 @@ type Params* = object
 
 var params* = Params()
 
+when defined(js):
+    import std/dom
+    params.windowWidth = window.innerWidth.float
+    params.windowHeight = window.innerHeight.float
+
 params.height = float(params.windowHeight) / float(params.windowWidth)
 
 const stopField = "windowWidth"

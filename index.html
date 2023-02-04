@@ -2,7 +2,10 @@
 
 <head>
     <title>Glittah</title>
-    <meta name="viewport" content="width=device-width, initial-scale=0.33, maximum-scale=1.0, user-scalable=0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <style>
+        html, body {margin: 0; height: 100%; overflow: hidden}
+    </style>
 </head>
 
 <body>
@@ -15,9 +18,38 @@
                 var onTouchEvent = function (event) {
                     var type;
                     switch (event.type) {
-                        case "touchstart": type = "mousedown"; break;
-                        case "touchend": type = "mouseup"; break;
-                        case "touchmove": type = "mousemove"; break;
+                        case "touchstart":
+                            window.dispatchEvent(new MouseEvent("mousemove", {
+                                view: window,
+                                bubbles: true,
+                                cancelable: true,
+                                clientX: event.originalEvent.touches[0].clientX,
+                                clientY: event.originalEvent.touches[0].clientY
+                            }))
+                            document.dispatchEvent(new MouseEvent("mousedown", {
+                                view: window,
+                                bubbles: true,
+                                cancelable: true,
+                                clientX: event.originalEvent.touches[0].clientX,
+                                clientY: event.originalEvent.touches[0].clientY
+                            }))
+                            break;
+                        case "touchend":
+                            document.dispatchEvent(new MouseEvent("mouseup", {
+                                view: window,
+                                bubbles: true,
+                                cancelable: true,
+                            }))
+                            break;
+                        case "touchmove":
+                            window.dispatchEvent(new MouseEvent("mousemove", {
+                                view: window,
+                                bubbles: true,
+                                cancelable: true,
+                                clientX: event.originalEvent.touches[0].clientX,
+                                clientY: event.originalEvent.touches[0].clientY
+                            }))
+                            break;
                         default:
                             return;
                     }
@@ -34,6 +66,9 @@
                     if(type == "mousemove") {
                         window.dispatchEvent(e)
                     } else {
+                        if(type == "mousedown") {
+
+                        }
                         document.dispatchEvent(e)
                     }
                 }
