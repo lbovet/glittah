@@ -22,7 +22,7 @@ proc start*(init, update: proc) =
             fill((particle$HUE).int, particle$SAT, particle$VAL)
             circleFill(particle$X * params.windowWidth,
                 particle$Y * params.windowWidth,
-                params.size * params.windowWidth * params.sizeFactor)
+                params.particleSize * params.windowWidth * params.sizeFactor)
         menu.update()
         if isMousePressed(MOUSE_BUTTON_RIGHT):
             quit()

@@ -34,11 +34,11 @@ proc next(): int {.inline} =
     return (state.currentPage + 1) mod (high(PageIndex) + 1)
 
 iterator particles*(): Particle {.inline} =
-    for index in 0..int(params.particleCount*500)-1:
+    for index in 0..int(params.particleCount*300)-1:
         yield index
 
 iterator others*(particle: Particle): Particle {.inline.} =
-    for index in 0..int(params.particleCount*500)-1:
+    for index in 0..int(params.particleCount*300)-1:
         if index != particle:
             yield index
 

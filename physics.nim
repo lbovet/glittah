@@ -20,15 +20,15 @@ proc bounceWalls*(p: Particle) =
         p.mult(VY, -1)
 
 proc weirdBounce*(distance: float, p, q: Particle) =
-    if distance < params.size * 0.1:
+    if distance < params.particleSize * 0.1:
         p$>VX = q$VX * sgn(p$VX*q$VX).float
         p$>VY = q$VY * sgn(p$VY*q$VY).float
 
-proc attraction*(distance: float, p, q: Particle) =
+proc attractionForce*(distance: float, p, q: Particle) =
     if distance < params.attractionRadius:
-        p$>VX += (params.attraction * params.mass * (q$X - p$X)) /
+        p$>VX += (params.attractionForce * params.particleMass * (q$X - p$X)) /
             (distance^2 * params.frameRate)
-        p$>VY += (params.attraction * params.mass * (q$Y - p$Y)) /
+        p$>VY += (params.attractionForce * params.particleMass * (q$Y - p$Y)) /
             (distance^2 * params.frameRate)
 
 proc gravity*(p: Particle) =

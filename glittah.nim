@@ -1,5 +1,5 @@
 import std/random, std/math
-import model, geometry, physics, lights, ui, maybe
+import model, geometry, physics, lights, navigation, ui, maybe
 
 proc init() =
     for p in 0..maxParticleCount-1:
@@ -16,15 +16,17 @@ proc update*(p: Particle) =
     # interactions
     for q in p.others():
         ?weirdBounce(distance(p, q), p, q)
-        ?attraction(distance(p, q), p, q)
+        ?attractionForce(distance(p, q), p, q)
+        ?chaseFactor(distance(p,q), p, q)
 
     # movement
     ?p.gravity()
+    ?p.wallFear()
     p.position()
     p.bounceWalls()
 
     # look
-    ?p.flicker()
-    ?p.glitter()
+    ?p.flickerDepth()
+    ?p.glitterDepth()
 
 ui.start(init, update)

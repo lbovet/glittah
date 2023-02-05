@@ -1,23 +1,29 @@
 type Params* = object
     # updatable
-    particleCount* = 0.2 # 1.0 -> 500
     worldSpeed* = 0.5
+    particleCount* = 0.33 # 1.0 -> 300
 
-    size* = 0.1
-    mass* = 0.1
+    particleSize* = 0.1
+    particleMass* = 0.1
 
-    flicker* = 0.4
+    flickerDepth* = 0.4
     flickerRatio* = 0.5
 
-    glitter* = 0.95
+    glitterDepth* = 0.95
     glitterRatio* = 0.6
 
-    weirdBounce* = 1.0
+    weirdBounce* = 0.0
 
-    attraction* = 0.06
+    attractionForce* = 0.0
     attractionRadius* = 0.2
 
-    gravity* = 0.5
+    wallFear* = 0.5
+
+    chaseFactor* = 0.5
+    chaseRadius* = 0.6
+    chaseAngle* = 0.1
+
+    gravity* = 0.0
 
     # constant
     windowWidth* = 1000.0
